@@ -1,0 +1,103 @@
+<div id="wrapper">
+    <app-sidebar></app-sidebar>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <app-header>
+
+            </app-header>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Add Products</h1>
+                </div>
+
+            </div>
+            <div class="col">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-user-plus" aria-hidden="true"></i>  Add Products</h6>
+                    </div>
+
+                    <div class="card-body">
+                        <form [formGroup]="addForm" (ngsubmit)="AddProduct()">
+                            <div class="form-group">
+                                <label for="name" id="name">Photo: </label>
+                                <input type="file" class="form-control"  accept="image/*" (change)="onSelectFile($event)"  formControlName="image"/>
+                                <img [src]="imgURL" height="200" *ngIf="imgURL">
+                            </div>
+                            <div *ngIf="image?.touched && image?.invalid">
+                                <small class="text-danger" *ngIf="image?.errors?.['required']">Photo 
+                                    est obligatoire</small>
+                                  
+                              </div>
+                            <div class="form-group">
+                                <label for="name" id="name">Name: </label>
+                                <input type="text" class="form-control" formControlName="name">
+                            </div>
+                            <div *ngIf="name?.touched && name?.invalid">
+                                <small class="text-danger" *ngIf="name?.errors?.['required']">nom 
+                                    est obligatoire</small>
+                                  
+                              </div>
+
+                              <div class="form-group">
+                                <label for="type" id="type">Categorie: </label>
+                                <div >
+                                   <input type="radio" name="type" value="Oil" id="inlineRadio1" formControlName="categorie"/>
+                                   <label  for="inlineRadio1">&nbsp; Oil &nbsp;&nbsp;</label>
+                                
+                                    <input  type="radio" name="type" value="Honey" id="inlineRadio2"  formControlName="categorie"/>
+                                    <label  for="inlineRadio2">&nbsp;Honey&nbsp;</label>
+                                 </div>
+                                
+                              </div>
+                              <div *ngIf="categorie?.touched && categorie?.invalid">
+                                <small class="text-danger" *ngIf="categorie?.errors?.['required']">experience 
+                                    est obligatoire</small>
+                                  
+                              </div> 
+                             <div>
+                                <div class="form-group">
+                                    <label for="description" id="desc">Price: </label>
+                                    <input type="text" class="form-control" formControlName="price">
+                                </div>
+                                <div *ngIf="price?.touched && price?.invalid">
+                                    <small class="text-danger" *ngIf="price?.errors?.['required']">price 
+                                        est obligatoire</small>
+                                      
+                                  </div>
+                                <div class="form-group">
+                                    <label for="price" id="price">Product_Detail: </label>
+                                    <input type="text" class="form-control" formControlName="product_detail">
+                                    <!--input type="number" class="form-control"-->
+                                </div>
+                                <div *ngIf="product_detail?.touched && product_detail?.invalid">
+                                    <small class="text-danger" *ngIf="product_detail?.errors?.['required']">product_detail
+                                        est obligatoire</small>    
+                                  </div>
+                               
+                                <button type="submit" (click)="AddProduct()"  class="btn btn-sm btn-primary mt-3">Add</button>
+                                <button type="submit" routerLink="/listProd"  class="btn btn-sm btn-primary mt-3" style="background-color: rgb(253, 75, 75);margin-left: 20px;border: none;">Annuler</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <app-footer></app-footer>
+        <!-- End of Footer -->
+
+    </div>
+</div>
